@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  // uncomment next line if you use Prisma <5.10
+  // directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model Idioma {
+  Id            String    @id @default(uuid())
+  Descripcion   String
+  estado        String
+  Registros     Registro[]
+}
+
+model Palabra {
+  Id            String    @id @default(uuid())
+  Palabra       String
+  Deletreo      String
+  estado        String
+  Registros     Registro[]
+}
+
+model Registro {
+  Id            String    @id @default(uuid())
+  Idioma        Idioma    @relation(fields: [IdIdioma], references: [Id])
+  IdIdioma      String
+  Palabra       Palabra   @relation(fields: [IdPalabra], references: [Id])
+  IdPalabra     String
+  Deletreo      String
+  Silabas       String?
+  Fonetica      String?
+  estado        String
+}
