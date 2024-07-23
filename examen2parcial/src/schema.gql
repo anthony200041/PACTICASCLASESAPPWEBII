@@ -1,0 +1,38 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type DispositivoDeComunicacion {
+  id: Float!
+  codigo: String!
+  detalle: String!
+  clasificacion: String!
+  caracteristicas: JSON!
+  costo: Float!
+  empresa: String!
+  activo: Boolean!
+}
+
+"""JSON custom scalar type"""
+scalar JSON
+
+type Query {
+  dispositivos: [DispositivoDeComunicacion!]!
+  dispositivo(id: Float!): DispositivoDeComunicacion
+  dispositivoPorCodigo(codigo: String!): DispositivoDeComunicacion
+  dispositivosPorCosto(costo: Float!): [DispositivoDeComunicacion!]!
+}
+
+type Mutation {
+  createDispositivo(data: CreateDispositivoInput!): DispositivoDeComunicacion!
+}
+
+input CreateDispositivoInput {
+  codigo: String!
+  detalle: String!
+  clasificacion: String!
+  caracteristicas: String!
+  costo: Float!
+  empresa: String!
+  activo: Boolean!
+}
